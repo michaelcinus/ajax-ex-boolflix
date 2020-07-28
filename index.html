@@ -13,9 +13,16 @@
     <script id="template" type="text/x-handlebars-template">
         <div class="film"> 
             <h2>{{ titolo }}</h2>
+            <h2>{{ nome }}</h2>
             <h4>{{ titolo_originale }}</h4>
+            <h4>{{ nome_originale }}</h4>
             <h4>{{ lingua }}</h4>
-            <h4>{{ voto }}</h4>
+            <i class="{{ stella1 }} fa-star"></i>
+            <i class="{{ stella2 }} fa-star"></i>
+            <i class="{{ stella3 }} fa-star"></i>
+            <i class="{{ stella4 }} fa-star"></i>
+            <i class="{{ stella5 }} fa-star"></i>
+
         </div> 
 
     </script>
@@ -24,7 +31,7 @@
 <body>
 
     <header>
-        <input id="input-film"type="">
+        <input id="input-film" type="text" placeholder="Inserisci nome film">
         <button id="cerca"> CERCA</button>
     </header>
 

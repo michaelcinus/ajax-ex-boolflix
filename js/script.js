@@ -16,6 +16,7 @@ function generaFilm(){
     $.ajax({
 
         url: 'https://api.themoviedb.org/3/search/movie',
+       // url : 'https://api.themoviedb.org/3/search/tv' ,
         method: 'GET',
         data : {
 
@@ -47,21 +48,49 @@ function stampaFilm(film) {
     for (var i = 0; i < film.length; i++) {
 
             var filmSelez = film[i];
-    
+            var lingua = filmSelez['original_language'];
+            var voto = parseInt(filmSelez['vote_average']/2);
+            var stella = [];
+            creaStelle(voto, stella);
+
             var filmHTML = compiled({
     
                 'titolo' : filmSelez['title'],
+                'nome' : filmSelez['name'],
                 'titolo_originale' : filmSelez['original_title'],
-                'lingua' : filmSelez['original_language'],
-                'voto' : filmSelez['vote_average'],
+                'nome_originale' : filmSelez['original_name'],
+                'lingua' : lingua,
+                'stella1' : stella[0],
+                'stella2' : stella[1],
+                'stella3' : stella[2],
+                'stella4' : stella[3],
+                'stella5' : stella[4]
+
     
             });
-    
+
             target.append(filmHTML); 
             
     }
 
 }
+
+function creaStelle(voto, stella) {
+
+    for (var i = 1; i <=5; i++) {
+
+        if (voto < i ){
+
+            stella.push('far')
+
+        } else {
+
+            stella.push('fas')
+        }
+    }
+
+}
+
 
 function init(){
     
