@@ -1,19 +1,29 @@
+function clickBtn() {
+
+    var btn = $('#cerca');
+    btn.click(generaFilm);
+
+
+}
+
 function generaFilm(){
+
+    var input = $('#input-film');
+    var inputFilm = input.val();
 
     $.ajax({
 
-        url: 'https://api.themoviedb.org/3/movie/550?api_key=34d6929b2eac3e033e5899c3f6db1104',
+        url: 'https://api.themoviedb.org/3/search/movie',
         method: 'GET',
-        success: function(title,) {
+        data : {
 
-            var  film = [
-                {
-                    "titolo" : title['title'],
-                    "titolo_originale" : title['original_title'],
-                    "lingua" : title['original_language'],
-                    "voto" : title['vote_average'],
-                },
-            ];
+            'api_key' : '34d6929b2eac3e033e5899c3f6db1104' ,
+            'query' : inputFilm
+
+        },
+        success: function(data) {
+
+            var  film = data['results'];
             stampaFilm(film);
 
         },
@@ -22,24 +32,25 @@ function generaFilm(){
         }
 
     })
+
 }
 
 function stampaFilm(film) {
+
+    var template = $('#template').html();
+    var compiled = Handlebars.compile(template);
+    var target = $('.film-container');
 
     for (var i = 0; i < film.length; i++) {
 
             var filmSelez = film[i];
     
-            var template = $('#template').html();
-            var compiled = Handlebars.compile(template);
-            var target = $('.film-container');
-    
             var filmHTML = compiled({
     
-                'titolo' : filmSelez['titolo'],
-                'titolo_originale' : filmSelez['titolo_originale'],
-                'lingua' : filmSelez['lingua'],
-                'voto' : filmSelez['voto'],
+                'titolo' : filmSelez['title'],
+                'titolo_originale' : filmSelez['original_title'],
+                'lingua' : filmSelez['original_language'],
+                'voto' : filmSelez['vote_average'],
     
             });
     
@@ -51,7 +62,7 @@ function stampaFilm(film) {
 
 function init(){
     
-    generaFilm();
+    clickBtn();
 
 }
 
