@@ -10,6 +10,8 @@ function generaFilm(){
 
     var input = $('#input-film');
     var inputFilm = input.val();
+    input.val('');
+
 
     $.ajax({
 
@@ -40,6 +42,7 @@ function stampaFilm(film) {
     var template = $('#template').html();
     var compiled = Handlebars.compile(template);
     var target = $('.film-container');
+    target.text('');
 
     for (var i = 0; i < film.length; i++) {
 
