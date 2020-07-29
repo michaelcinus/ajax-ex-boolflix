@@ -12,11 +12,12 @@
 
     <script id="template" type="text/x-handlebars-template">
         <div class="film"> 
+            <img class="poster" src="https://image.tmdb.org/t/p/w185/{{ poster }}" alt="">
             <h2>{{ titolo }}</h2>
             <h2>{{ nome }}</h2>
             <h4>{{ titolo_originale }}</h4>
             <h4>{{ nome_originale }}</h4>
-            <img src="{{ lingua }}" alt="">
+            <img class="lingua" src="{{ lingua }}" alt="">
             <div class="stelle">
                 <i class="{{ stella1 }} fa-star"></i>
                 <i class="{{ stella2 }} fa-star"></i>

@@ -86,7 +86,8 @@ function stampaFilm(film) {
             creaStelle(voto, stella);
 
             var filmHTML = compiled({
-    
+
+                'poster' : filmSelez['poster_path'],
                 'titolo' : filmSelez['title'],
                 'nome' : filmSelez['name'],
                 'titolo_originale' : filmSelez['original_title'],
