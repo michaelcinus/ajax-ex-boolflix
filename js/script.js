@@ -59,7 +59,7 @@ function stampaFilm(film) {
                 'nome' : filmSelez['name'],
                 'titolo_originale' : filmSelez['original_title'],
                 'nome_originale' : filmSelez['original_name'],
-                'lingua' : lingua,
+                'lingua' : creaBandiera(lingua),
                 'stella1' : stella[0],
                 'stella2' : stella[1],
                 'stella3' : stella[2],
@@ -73,6 +73,26 @@ function stampaFilm(film) {
             
     }
 
+}
+
+function creaBandiera(lingua) {
+
+    if (lingua == "en") {
+
+        return "./img/en.jpg"
+    } else if (lingua == "it") {
+
+        return "./img/it.jpg"
+
+    } else if (lingua == "fr") {
+        
+        return "./img/francia.jpg"
+    } else if (lingua == "es") {
+
+        return "./img/spagna.jpg" 
+    } else {
+        return lingua
+    }
 }
 
 function creaStelle(voto, stella) {
