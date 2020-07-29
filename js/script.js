@@ -1,22 +1,27 @@
 function clickBtn() {
 
     var btn = $('#cerca');
-    btn.click(generaFilm);
+    btn.click(genera);
 
 
 }
 
-function generaFilm(){
+function genera(){
 
     var input = $('#input-film');
     var inputFilm = input.val();
     input.val('');
 
+    generaFilm(inputFilm);
+    generaSerie(inputFilm);
+
+}
+
+function generaFilm(inputFilm){
 
     $.ajax({
 
         url: 'https://api.themoviedb.org/3/search/movie',
-       // url : 'https://api.themoviedb.org/3/search/tv' ,
         method: 'GET',
         data : {
 
@@ -37,6 +42,33 @@ function generaFilm(){
     })
 
 }
+
+function generaSerie(inputFilm){
+
+    $.ajax({
+
+        url: 'https://api.themoviedb.org/3/search/tv',
+        method: 'GET',
+        data : {
+
+            'api_key' : '34d6929b2eac3e033e5899c3f6db1104' ,
+            'query' : inputFilm
+
+        },
+        success: function(data) {
+
+            var  film = data['results'];
+            stampaFilm(film);
+
+        },
+        error: function(request,state,error){
+
+        }
+
+    })
+
+}
+
 
 function stampaFilm(film) {
 
@@ -75,21 +107,22 @@ function stampaFilm(film) {
 
 }
 
+
 function creaBandiera(lingua) {
 
     if (lingua == "en") {
 
-        return "./img/en.jpg"
+        return "./img/en.svg"
     } else if (lingua == "it") {
 
-        return "./img/it.jpg"
+        return "./img/it.png"
 
     } else if (lingua == "fr") {
         
-        return "./img/francia.jpg"
+        return "./img/fr.svg"
     } else if (lingua == "es") {
 
-        return "./img/spagna.jpg" 
+        return "./img/es.jpg" 
     } else {
         return lingua
     }
