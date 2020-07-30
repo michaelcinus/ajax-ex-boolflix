@@ -58,7 +58,7 @@ function generaSerie(inputFilm){
         success: function(data) {
 
             var  film = data['results'];
-            stampaFilm(film);
+            stampaSerie(film);
 
         },
         error: function(request,state,error){
@@ -89,15 +89,51 @@ function stampaFilm(film) {
 
                 'poster' : filmSelez['poster_path'],
                 'titolo' : filmSelez['title'],
-                'nome' : filmSelez['name'],
                 'titolo_originale' : filmSelez['original_title'],
+                'lingua' : creaBandiera(lingua),
+                'stella1' : stella[0],
+                'stella2' : stella[1],
+                'stella3' : stella[2],
+                'stella4' : stella[3],
+                'stella5' : stella[4],
+                'overview' : filmSelez['overview']
+
+    
+            });
+
+            target.append(filmHTML); 
+            
+    }
+
+}
+
+function stampaSerie(film) {
+
+    var template = $('#template').html();
+    var compiled = Handlebars.compile(template);
+    var target = $('.film-container');
+    target.text('');
+
+    for (var i = 0; i < film.length; i++) {
+
+            var filmSelez = film[i];
+            var lingua = filmSelez['original_language'];
+            var voto = parseInt(filmSelez['vote_average']/2);
+            var stella = [];
+            creaStelle(voto, stella);
+
+            var filmHTML = compiled({
+
+                'poster' : filmSelez['poster_path'],
+                'nome' : filmSelez['name'],
                 'nome_originale' : filmSelez['original_name'],
                 'lingua' : creaBandiera(lingua),
                 'stella1' : stella[0],
                 'stella2' : stella[1],
                 'stella3' : stella[2],
                 'stella4' : stella[3],
-                'stella5' : stella[4]
+                'stella5' : stella[4],
+                'overview' : filmSelez['overview']
 
     
             });

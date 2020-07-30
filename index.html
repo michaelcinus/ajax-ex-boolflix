@@ -13,6 +13,7 @@
     <script id="template" type="text/x-handlebars-template">
         <div class="film"> 
             <img class="poster" src="https://image.tmdb.org/t/p/w185/{{ poster }}" alt="">
+           <div class="descrizione">
             <h2>{{ titolo }}</h2>
             <h2>{{ nome }}</h2>
             <h4>{{ titolo_originale }}</h4>
@@ -25,6 +26,9 @@
                 <i class="{{ stella4 }} fa-star"></i>
                 <i class="{{ stella5 }} fa-star"></i>
             </div>
+            <p>{{ overview }}</p>
+
+           </div>
 
         </div> 
 
@@ -34,8 +38,11 @@
 <body>
 
     <header>
-        <input id="input-film" type="text" placeholder="Inserisci nome film">
-        <button id="cerca"> CERCA</button>
+        <h1>BOOLFLIX</h1>
+        <div>
+            <input id="input-film" type="text" placeholder="Inserisci nome film">
+            <button id="cerca"> CERCA</button>
+        </div>
     </header>
 
     <div id="film-container" class="film-container">
